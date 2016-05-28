@@ -1,5 +1,53 @@
-@darkred: #CD0000;
+// Colors
 
-h1 {
-   color: @darkred;
+@white: #ffffff;
+
+
+
+// Media Query Breakpoints
+
+@screen-xs-max: 767px;
+@screen-sm-min: 768px;
+@screen-sm-max: 991px;
+@screen-md-min: 992px;
+@screen-md-max: 1199px;;
+@screen-lg-min: 1200px;
+
+
+
+// Home CSS
+
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	font-family: "Verdana", Sans-serif;
+}
+
+.hero {
+	height: 100%;
+	background: no-repeat center right fixed url('/static/images/hmc_dartmouth_entrance.jpg');
+	background-size: cover;
+
+	.container {
+		// Veritcally center contents
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+
+		text-align: center;
+		color: @white;
+
+		@media (min-width: @screen-sm-min) {
+			h1 {
+				font-size: 72px;
+			}
+			p {
+				font-size: 24px;
+			}
+		}
+	}
 }

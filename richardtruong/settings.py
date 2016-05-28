@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE_CLASSES = [
+    # Default middleware classes
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -53,6 +54,8 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # Additional middleware classes
+    'django.middleware.gzip.GZipMiddleware'
 ]
 
 ROOT_URLCONF = 'richardtruong.urls'
@@ -131,12 +134,17 @@ STATIC_URL = '/static/'
 PROJECT_DIR = os.path.dirname(__file__)
 STATIC_ROOT = os.path.join(PROJECT_DIR,'static/')
 
+COMPRESS_ENABLED = True
+COMPRESS_CSS_FILTERS = [
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.cssmin.CSSMinFilter'
+]
 COMPRESS_PRECOMPILERS = (
     ('text/less', 'lessc {infile} {outfile}'),
 )
 
 STATICFILES_FINDERS = (
-    # default static files finder
+    # Default static files finder
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     # django-compressor static files finder

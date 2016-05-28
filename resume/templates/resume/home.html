@@ -16,9 +16,10 @@
 
 
 	<body>
-		<div class="hero">
-			<div class="container">
+		<div id="hero">
+			<div class="container text-center">
 				<h1>Richard Truong</h1>
+				<hr>
 				<p>
 					<span class="js-typer" data-delim="::" data-strings="{% for entry in description_entries %}{{ entry.description }}::{% endfor %}"></span>
 					<span class="js-typer-cursor" data-cursor="_"></span>
@@ -30,6 +31,27 @@
 			<span class="glyphicon glyphicon-chevron-down"></span>
 		</a>
 
+		<div id="profile">
+			<div class="container">
+				<h2 class="text-center">Profile</h2>
+				<hr>
+				<div class="row">
+					<div class="col-md-4">
+						<h3>About me</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					</div>
+					<div class="col-md-4 text-center">
+						<img src="/static/images/richard_truong.jpg" alt="Richard Truong">
+					</div>
+					<div class="col-md-4">
+						<h3>Details</h3>
+						<p><strong>Name:</strong><br>Richard Truong</p>
+						<p><strong>Age:</strong><br>{{ age }} years</p>
+						<p><strong>Location:</strong><br>California, United States</p>
+					</div>
+				</div>
+			</div>
+		</div>
 
 		{% for entry in education_entries %}
 			<h1>{{ entry.name }}</h1>

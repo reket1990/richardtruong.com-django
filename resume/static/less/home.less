@@ -1,7 +1,9 @@
 // Colors
 
 @white: #ffffff;
+@very-light-gray: #e0e0e0;
 @very-dark-gray: #222222;
+@green: #008B00;
 
 
 
@@ -27,7 +29,7 @@ body {
 	font-family: "Verdana", Sans-serif;
 }
 
-.hero {
+#hero {
 	height: 100%;
 	background: no-repeat center right fixed url('/static/images/hmc_dartmouth_entrance.jpg');
 	background-size: cover;
@@ -40,15 +42,25 @@ body {
 		flex-direction: column;
 		justify-content: center;
 
-		text-align: center;
+		// Style contents
 		color: @white;
-
-		@media (min-width: @screen-sm-min) {
-			h1 {
+		h1 {
+			margin-bottom: 0;
+			@media (min-width: @screen-sm-min) {
 				font-size: 72px;
 			}
-			p {
+		}
+		p {
+			margin-top: 0;
+			@media (min-width: @screen-sm-min) {
 				font-size: 24px;
+			}
+		}
+
+		hr {
+			width: 175px;
+			@media (min-width: @screen-sm-min) {
+				width: 350px;
 			}
 		}
 	}
@@ -73,7 +85,7 @@ body {
 		font-size: 30px;
 		color: @white;
 
-		// animation
+		// Bouncing animation
 		animation-name: wiggle;
 		animation-duration: 1.2s;
 		animation-timing-function: linear;
@@ -89,6 +101,47 @@ body {
 			}
 			100% {
 				padding-top: 24px;
+			}
+		}
+	}
+}
+
+#profile {
+	.container {
+		@media (min-width: @screen-sm-min) {
+			padding: 50px 160px;
+		}
+		hr {
+			@media (min-width: @screen-sm-min) {
+				margin-top: 40px;
+				margin-bottom: 40px;
+			}
+		}
+
+		h2 {
+			margin-top: 40px;
+			margin-bottom: 40px;
+			color: @green;
+			@media (min-width: @screen-sm-min) {
+				margin-top: 0;
+				font-size: 48px;
+			}
+		}
+		h3 {
+			color: @green;
+		}
+
+		img {
+			width: 250px;
+			height: 250px;
+			border: 15px solid @very-light-gray;
+			border-radius: 50%;
+		}
+		@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+			img {
+				width: 170px;
+				height: 170px;
+				border: 10px solid @very-light-gray;
 			}
 		}
 	}

@@ -7,3 +7,6 @@
 # Python Compilation Files
 *.pyc
 
+# django-compressor files
+/richardtruong/static/CACHE/*
+

@@ -1,14 +1,25 @@
 {% load staticfiles %}
+{% load compress %}
 
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>Richard Truong</title>
 		<link rel="stylesheet" href="{% static 'bootstrap-3.3.6-dist/css/bootstrap.min.css' %}">
+		{% compress css %}
+		<link rel="stylesheet" type="text/less" media="all" href="{% static 'less/home.less' %}" />
+		{% endcompress %}
 	</head>
 
 
 	<body>
+		<div id="hero" class="jumbotron">
+			<div class="container">
+				<h1>Richard Truong</h1>
+				<p>I am a developer.</p>
+			</div>
+		</div>
+
 		{% for entry in education_entries %}
 			<h1>{{ entry.name }}</h1>
 			<p>{{ entry.location }} | {{ entry.start_date }} - {{ entry.end_date }}</p>

@@ -4,24 +4,16 @@ var Typer = function(element) {
 
 	// Get strings
 	var delim = element.dataset.delim || ",";
-	var strings = element.dataset.strings || "sample string 1,sample string 2";
+	var strings = element.dataset.strings || "sample string 1";
 	this.strings = strings.split(delim).filter(function(v){ return v; }); // non empty strings
 
 	// String tracking variables
-	this.progress = { string: 0, char: 0, building: true };
+	this.progress = { string: Math.floor(Math.random() * (this.strings.length)), char: 0, building: true, dupeIndex: 0 }; // Start on a random string
 	this.typing = true;
 
 	// Get delays
-	this.delay = element.dataset.delay || 100;
-	this.deleteDelay = element.dataset.deleteDelay || 800;
-
-	// Get colors
-	var colors = element.dataset.colors || "white";
-	this.colors = colors.split(",");
-
-	// Color tracking variable and initialization
-	this.colorIndex = 0;
-	this.element.style.color = this.colors[0];
+	this.delay = element.dataset.delay || 50;
+	this.deleteDelay = element.dataset.deleteDelay || 1000;
 
 	this.doTyping();
 };
@@ -41,24 +33,36 @@ Typer.prototype.stop = function() {
 Typer.prototype.doTyping = function() {
 	var element = this.element;
 	var progress = this.progress;
+	var delay = this.delay;
+	var currentString = this.strings[progress.string];
 
 	// Add or remove a character
 	if (progress.building) {
-		// Add a character
-		element.innerHTML += this.strings[progress.string][progress.char];
-		progress.char += 1;
-		if (progress.char == this.strings[progress.string].length) {
+		if (progress.char == currentString.length) {
 			progress.building = false;
+			delay = this.deleteDelay;
+
+			// Pick the next string and find the dupe index
+			progress.string = Math.floor(Math.random() * (this.strings.length)); // Pick a random string
+			progress.dupeIndex = Math.min(currentString.length, this.strings[progress.string].length);
+			for (var i = 0; i < Math.min(currentString.length, this.strings[progress.string].length); i++) {
+				if (currentString.charAt(i) !== this.strings[progress.string].charAt(i)) {
+					progress.dupeIndex = i;
+					break;
+				}
+			}
+		} else {
+			// Add a character
+			element.innerHTML += currentString[progress.char];
+			progress.char += 1;
 		}
 	} else {
-		// Remove a character
-		element.innerHTML = element.innerHTML.slice(0, -1);
-		progress.char -= 1;
-		if (!this.element.innerHTML) {
+		if (progress.char == progress.dupeIndex) {
 			progress.building = true;
-			progress.string = (progress.string + 1) % this.strings.length;
-			this.colorIndex = (this.colorIndex + 1) % this.colors.length;
-			this.element.style.color = this.colors[this.colorIndex];
+		} else {
+			// Remove a character
+			element.innerHTML = element.innerHTML.slice(0, -1);
+			progress.char -= 1;
 		}
 	}
 
@@ -68,7 +72,7 @@ Typer.prototype.doTyping = function() {
 		if (that.typing) {
 			that.doTyping();
 		};
-	}, (progress.char == this.strings[progress.string].length) ? this.deleteDelay : this.delay);
+	}, delay);
 };
 
 
@@ -96,17 +100,17 @@ Cursor.prototype.updateBlinkState = function() {
 }
 
 
+
 // Initialize the Typer once the window is loaded
 window.onload = function() {
 	typers = {};
-	elements = document.getElementsByClassName("js-typer");
-	for (var i = 0, e; e = elements[i++];) {
+	typerElements = document.getElementsByClassName("js-typer");
+	for (var i = 0, e; e = typerElements[i++];) {
 		typers[e.id] = new Typer(e);
 	}
 
-	elements2 = document.getElementsByClassName("js-typer-cursor");
-	for (var i = 0, e; e = elements2[i++];) {
+	cursorElements = document.getElementsByClassName("js-typer-cursor");
+	for (var i = 0, e; e = cursorElements[i++];) {
 		var t = new Cursor(e);
-		t.owner.cursor = t;
 	}
 };

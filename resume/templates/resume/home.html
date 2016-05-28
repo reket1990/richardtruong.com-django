@@ -20,7 +20,7 @@
 			<div class="container">
 				<h1>Richard Truong</h1>
 				<p>
-					<span class="js-typer" data-delim="::" data-strings="I am a developer.::I am a fullstack software engineer.::I love playing video games."></span>
+					<span class="js-typer" data-delim="::" data-strings="{% for entry in description_entries %}{{ entry.description }}::{% endfor %}"></span>
 					<span class="js-typer-cursor" data-cursor="_"></span>
 				</p>
 			</div>

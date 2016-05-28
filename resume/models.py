@@ -4,6 +4,12 @@ from django.db import models
 from django.contrib import admin
 
 # Create your models here.
+class Description(models.Model):
+	name = models.CharField(max_length=50)
+	description = models.CharField(max_length=100)
+	def __unicode__(self):
+		return self.name
+
 class Education(models.Model):
 	name = models.CharField(max_length=50)
 	location = models.CharField(max_length=50)
@@ -13,4 +19,5 @@ class Education(models.Model):
 	def __unicode__(self):
 		return self.name
 
+admin.site.register(Description)
 admin.site.register(Education)

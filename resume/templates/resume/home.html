@@ -6,8 +6,11 @@
 	<head>
 		<title>Richard Truong</title>
 		{% compress css %}
-		<link rel="stylesheet" type="text/css" href="{% static 'bootstrap-3.3.6-dist/css/bootstrap.min.css' %}">
-		<link rel="stylesheet" type="text/less" href="{% static 'less/home.less' %}">
+			<link rel="stylesheet" type="text/css" href="{% static 'bootstrap-3.3.6-dist/css/bootstrap.min.css' %}">
+			<link rel="stylesheet" type="text/less" href="{% static 'less/home.less' %}">
+		{% endcompress %}
+		{% compress js %}
+			<script type="text/javascript" src="{% static 'js/typer.js' %}"></script>
 		{% endcompress %}
 	</head>
 
@@ -16,7 +19,10 @@
 		<div class="hero">
 			<div class="container">
 				<h1>Richard Truong</h1>
-				<p>I am a developer.</p>
+				<p>
+					<span class="js-typer" data-delim="::" data-strings="I am a developer.::I am a fullstack software engineer.::I love playing video games."></span>
+					<span class="js-typer-cursor" data-cursor="_"></span>
+				</p>
 			</div>
 		</div>
 

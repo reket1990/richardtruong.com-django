@@ -1,6 +1,7 @@
 // Colors
 
 @white: #ffffff;
+@very-dark-gray: #222222;
 
 
 
@@ -34,6 +35,7 @@ body {
 	.container {
 		// Veritcally center contents
 		height: 100%;
+		padding-bottom: 80px;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -47,6 +49,46 @@ body {
 			}
 			p {
 				font-size: 24px;
+			}
+		}
+	}
+}
+
+.scroll-down {
+	position: absolute;
+	bottom: 0;
+	height: 80px;
+	width: 100%;
+	text-align: center;
+	background-color: @very-dark-gray;
+
+	@media (min-width: @screen-sm-min) {
+		right: 5%;
+		width: 110px;
+	}
+
+	.glyphicon {
+		padding-top: 25px;
+		left: 2px;
+		font-size: 30px;
+		color: @white;
+
+		// animation
+		animation-name: wiggle;
+		animation-duration: 1.2s;
+		animation-timing-function: linear;
+		animation-iteration-count: infinite;
+		animation-direction: normal;
+
+		@keyframes wiggle {
+			0% {
+				padding-top: 24px;
+			}
+			50% {
+				padding-top: 30px;
+			}
+			100% {
+				padding-top: 24px;
 			}
 		}
 	}

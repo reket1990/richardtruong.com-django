@@ -6,6 +6,7 @@ from datetime import date
 def home(request):
 	description_entries = Description.objects.all()
 	education_entries = Education.objects.all()
+	career_entries = Career.objects.all()
 
 	# Calculate age
 	today = date.today()
@@ -14,5 +15,6 @@ def home(request):
 	return render(request, 'resume/home.html', {
 		'description_entries': description_entries,
 		'age': age,
-		'education_entries': education_entries
+		'education_entries': education_entries,
+		'career_entries': career_entries
 	})

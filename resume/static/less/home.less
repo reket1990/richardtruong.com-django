@@ -4,6 +4,7 @@
 @very-light-gray: #e0e0e0;
 @very-dark-gray: #222222;
 @green: #008B00;
+@beige: #f5f5dc;
 
 
 
@@ -106,31 +107,38 @@ body {
 	}
 }
 
-#profile {
-	.container {
-		@media (min-width: @screen-sm-min) {
-			padding: 50px 160px;
-		}
-		hr {
-			@media (min-width: @screen-sm-min) {
-				margin-top: 40px;
-				margin-bottom: 40px;
-			}
-		}
+// Container modification for all the scroll modules
+.container.scroll-module {
+	// Create spacing for right rail navigation
+	@media (min-width: @screen-sm-min) {
+		padding: 50px 160px;
+	}
 
-		h2 {
+	// Spacing and styling for header module
+	hr {
+		@media (min-width: @screen-sm-min) {
 			margin-top: 40px;
 			margin-bottom: 40px;
-			color: @green;
-			@media (min-width: @screen-sm-min) {
-				margin-top: 0;
-				font-size: 48px;
-			}
 		}
-		h3 {
-			color: @green;
+	}
+	h2 {
+		margin-top: 40px;
+		margin-bottom: 40px;
+		color: @green;
+		@media (min-width: @screen-sm-min) {
+			margin-top: 0;
+			font-size: 48px;
 		}
+	}
 
+	// Subheadings green
+	h3 {
+		color: @green;
+	}
+}
+
+#profile {
+	.container {
 		img {
 			margin-top: 20px;
 			width: 250px;
@@ -144,6 +152,23 @@ body {
 				height: 170px;
 				border: 10px solid @very-light-gray;
 			}
+		}
+	}
+}
+
+
+#experiences {
+	background-color: @beige;
+
+	.experience {
+		margin-bottom: 40px;
+
+		.description {
+			white-space: pre-line;
+		}
+
+		.location {
+			color: @green;
 		}
 	}
 }

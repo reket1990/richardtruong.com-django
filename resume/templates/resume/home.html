@@ -22,17 +22,17 @@
 				<hr>
 				<p>
 					<span class="js-typer" data-delim="::" data-strings="{% for entry in description_entries %}{{ entry.description }}::{% endfor %}"></span>
-					<span class="js-typer-cursor" data-cursor="_"></span>
+					<span class="js-typer-cursor">_</span>
 				</p>
 			</div>
 		</div>
 
-		<a href="#profile" class="scroll-down">	
+		<a href="#profile" class="scroll-down">
 			<span class="glyphicon glyphicon-chevron-down"></span>
 		</a>
 
 		<div id="profile">
-			<div class="container">
+			<div class="container scroll-module">
 				<h2 class="text-center">Profile</h2>
 				<hr>
 				<div class="row">
@@ -53,10 +53,50 @@
 			</div>
 		</div>
 
-		{% for entry in education_entries %}
-			<h1>{{ entry.name }}</h1>
-			<p>{{ entry.location }} | {{ entry.start_date }} - {{ entry.end_date }}</p>
-			<p>{{ entry.description }}</p>
-		{% endfor %}
+		<div id="experiences">
+			<div class="container scroll-module">
+				<h2 class="text-center">Experiences</h2>
+				<hr>
+				<h3>Educations</h3>
+				<div>
+					{% for entry in education_entries %}
+						<div class="experience row">
+							<div class="col-md-4">
+								<h4>{{ entry.name }}</h4>
+								<p>{{ entry.start_date }} - {{ entry.end_date }}</p>
+							</div>
+							<div class="col-md-8">
+								<p><strong>{{ entry.degree }}</strong></p>
+								<p class="description">{{ entry.description }}</p>
+								<div class="location">
+									<span class="glyphicon glyphicon-map-marker"></span>
+									{{ entry.location }}
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+				<hr>
+				<h3>Careers</h3>
+				<div>
+					{% for entry in career_entries %}
+						<div class="experience row">
+							<div class="col-md-4">
+								<h4>{{ entry.name }}</h4>
+								<p>{{ entry.start_date }} - {{ entry.end_date }}</p>
+							</div>
+							<div class="col-md-8">
+								<p><strong>{{ entry.title }}</strong></p>
+								<p class="description">{{ entry.description }}</p>
+								<div class="location">
+									<span class="glyphicon glyphicon-map-marker"></span>
+									{{ entry.location }}
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
 	</body>
 </html>

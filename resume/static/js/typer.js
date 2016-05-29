@@ -80,7 +80,6 @@ Typer.prototype.doTyping = function() {
 // Initialize Cursor
 var Cursor = function(element) {
 	this.element = element;
-	element.innerHTML = element.dataset.cursor || "_";
 	element.style.transition = "all 0.1s";
 
 	// Loop the function with a delay
